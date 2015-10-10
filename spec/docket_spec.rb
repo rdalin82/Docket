@@ -1,5 +1,8 @@
 require 'minitest/autorun'
 require '../lib/docket'
+require '../lib/DocketDate'
+require '../lib/DateList'
+require 'faker' 
 
 describe DocketDate do 
 	let(:ddate) do 
@@ -7,6 +10,7 @@ describe DocketDate do
 		d.set_date(2015, 1, 2)
 		d
 	end 
+
 	let(:setdate) do 
 		d = DocketDate.new 
 		d.set_event({
@@ -48,6 +52,20 @@ describe DocketDate do
 
 	describe DateList do 
 		let(:dlist) { DateList.new }
+		let(:full_list) do 
+			dlist = DateList.new
+			1000.times do 
+				date = DocketDate.new
+				date.set_event({
+					:by_user=> "#{Faker::Name.name}",
+					:for_user=>"#{Faker::Name.name}", 
+					:event_type=>"#{Faker::Lorem.word}", 
+					:event_name=>"#{Faker::Lorem.words.join(" ")}"}) do 
+					set_date(Faker::Number.between(2015, 2018), Faker::Number.between(1, 12), Faker::Number.between(1, 28))
+				end 
+					dlist.add_event(date)
+			end 
+		end 
 
 		it "should have a list of dates" do 
 			assert_respond_to dlist, :each 
