@@ -1,0 +1,19 @@
+goals: 
+
+create docketing system
+- User can schedule events
+	-those events have: 
+		-dates
+		-set time event
+		-user who scheduled
+		-user it is for
+		-event type
+			-reminder
+			-court date
+			-due date 
+		-event location
+		-Event description 
+-User can view all events
+-User can view all events scheduled for themself or another user
+
+		-
